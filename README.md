@@ -12,6 +12,10 @@ Create a Tag: To make the EC2 instance identifiable as one of the instances that
 
 Create a Lambda Function: Next, you need to create a Lambda function that will run the code to create EC2 snapshots. You can use any programming language to write the code for the Lambda function, but in this case, you will be using Python. The Lambda function should have the basic permissions to create snapshots.
 
+About the code: 
+
+It starts by listing all the regions where the EC2 instances are running. Then, for each region, it filters the instances with the 'backup' tag set to 'true' and creates a timestamp. It loops through all the volumes attached to each instance and creates a snapshot for each one, using the timestamp in the snapshot description. Finally, it prints the description and ID of each created snapshot. This script provides an easy way to automate EC2 backups in a multi-region environment.
+
 ![Screen Shot 2023-04-29 at 8 15 38 PM](https://user-images.githubusercontent.com/123271041/235368369-48c5b543-b11c-4f66-b466-f34f67707fc8.png)
 
 Change IAM Permissions: In order for the Lambda function to be able to create snapshots, you need to change the IAM permissions on the JSON code and allow snapshot creation. You can do this by adding the necessary permissions to the IAM role associated with the Lambda function.
